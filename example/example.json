@@ -1,0 +1,91 @@
+
+{
+	"crumbs": 
+	{
+		"wordsize" : 32,
+		"byteorder" : "little",
+		"ver_maj" : 0,
+		"ver_min" : 1,
+		"sequence" : 16,
+		"timestamp" : 16,
+		"filters" : true,
+		"categories" : 
+		[ 
+			{
+				"name" : "IO",
+				"id" : 1,
+				"entries" : 
+				[
+					{
+						"name" : "Read",
+						"filter" : "INFO",
+						"format" : "bytes: %x{bytes} offset: 0x%x{offset} src: %{source}",
+						"payload" : 
+						{
+							"source" : 8,
+							"bytes" : 32,
+							"offset" : 32
+						}
+					},
+					{
+						"name" : "Write",
+						"format" : "bytes: %d{bytes} offset: 0x%x{offset} src: %{source}",
+						"payload" : 
+						{
+							"source" : 8,
+							"bytes" : 32,
+							"offset" : 32
+						}
+					}
+				]
+			},
+			{
+				"name" : "State",
+				"id" : 2,
+				"entries" : 
+				[ 
+					{
+						"name" : "PwrRst",
+						"filter" : "SYS",
+						"format" : "Power-on/reset: %{state}",
+						"payload" : 
+						{
+							"state" : "POWER_ON SLEEP WAKE POWER_OFF RESET"
+						}
+					},
+
+					{
+						"name" : "PowerMode",
+						"filter" : "SYS",
+						"format" : "Power mode transition from %{from} -> %{to}",
+						"payload" : 
+						{
+							"from" : 8,
+							"to" : 8
+						}
+					},
+
+					{
+						"name" : "Fault",
+						"filter" : "SYS",
+						"format" : "Fault detected: %x{code}",
+						"payload" : 
+						{
+							"code" : 16
+						}
+					},
+
+					{
+						"name" : "HighTemp",
+						"filter" : "WARN",
+						"format" : "High termperature detect: %{temp}",
+						"payload" :
+						{
+							"temp" : 0.32
+						}
+					}
+				]
+			}
+		]
+	}
+}
